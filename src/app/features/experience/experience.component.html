@@ -1,0 +1,172 @@
+<div class="page-wrapper">
+  <div class="container experience-page">
+    <!-- Header -->
+    <header class="section-header">
+      <span class="section-label">Professional Background</span>
+      <h1 class="section-title">ERP-Domain Experience</h1>
+      <p class="section-subtitle">
+        Engineering business applications, transactional databases, and workflow governance systems in an enterprise software environment.
+      </p>
+    </header>
+
+    <!-- Company Context Banner -->
+    <div class="context-banner card">
+      <div class="context-icon">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+          <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+        </svg>
+      </div>
+      <div class="context-details">
+        <h3 class="context-heading">Domain Background · ERP Enterprise Solutions</h3>
+        <p class="context-text">
+          Contributed to multiple internal and customer-facing business applications at an ERP-domain company. Responsibilities spanned backend architecture in <strong>ASP.NET (MVC & Web Forms)</strong>, data layers with <strong>ADO.NET & Entity Framework</strong>, stored procedure optimization in <strong>SQL Server</strong>, and role-governed user workflows.
+        </p>
+      </div>
+    </div>
+
+    <!-- Interactive ERP Lifecycle Visualizer -->
+    <section class="lifecycle-section card" aria-label="ERP Operational Lifecycle Diagram">
+      <div class="lifecycle-header">
+        <div>
+          <span class="lifecycle-label">System Architecture</span>
+          <h2 class="lifecycle-title">End-to-End Enterprise Flow</h2>
+        </div>
+        <span class="lifecycle-hint">Click a pipeline phase to inspect data entities</span>
+      </div>
+
+      <div class="lifecycle-steps-row" role="tablist">
+        @for (step of lifecycleSteps; track step.id; let last = $last) {
+          <button
+            type="button"
+            class="lifecycle-step-btn"
+            [class.active]="activeStep().id === step.id"
+            (click)="selectStep(step)"
+            role="tab"
+            [attr.aria-selected]="activeStep().id === step.id"
+          >
+            <span class="step-num">{{ step.stepNumber }}</span>
+            <span class="step-name">{{ step.label }}</span>
+          </button>
+          @if (!last) {
+            <span class="step-arrow">→</span>
+          }
+        }
+      </div>
+
+      <div class="lifecycle-preview-box">
+        <div class="preview-text-block">
+          <span class="preview-meta">Phase Scope</span>
+          <p class="preview-desc">{{ activeStep().description }}</p>
+        </div>
+        <div class="preview-entities-block">
+          <span class="preview-meta">Entities & Records</span>
+          <div class="entity-tags">
+            @for (entity of activeStep().dataEntities; track entity) {
+              <span class="tech-tag tech-tag-accent">{{ entity }}</span>
+            }
+          </div>
+        </div>
+        <div class="preview-action">
+          <button
+            type="button"
+            class="btn btn-secondary btn-sm"
+            (click)="scrollToSystem(activeStep().systemId)"
+          >
+            Jump to System Card ↓
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Systems Detail List -->
+    <section class="systems-list-section" aria-label="Detailed System Cards">
+      @for (exp of experiences; track exp.id) {
+        <article [id]="exp.id" class="card system-card">
+          <!-- Card Header -->
+          <div class="system-card-header">
+            <div class="system-meta-row">
+              <div class="system-title-group">
+                <span class="system-code-tag">{{ exp.systemName }}</span>
+                <span class="system-type-badge">{{ exp.systemType }}</span>
+              </div>
+              <span class="system-period">{{ exp.period }}</span>
+            </div>
+
+            <h2 class="system-role">{{ exp.role }}</h2>
+            <span class="system-company">{{ exp.companyContext }}</span>
+
+            <!-- Technologies -->
+            <div class="system-tech-row">
+              @for (tech of exp.technologies; track tech) {
+                <span class="tech-tag">{{ tech }}</span>
+              }
+            </div>
+          </div>
+
+          <!-- Description -->
+          <p class="system-description">{{ exp.description }}</p>
+
+          <!-- Workflows & Modules Handled -->
+          <div class="system-card-body">
+            <div class="workflow-column">
+              <h3 class="column-heading">
+                <span class="heading-prefix">■</span> Workflows & Modules Handled
+              </h3>
+              <ul class="clean-checklist">
+                @for (flow of exp.workflows; track flow) {
+                  <li>
+                    <span class="check-icon">✓</span>
+                    <span>{{ flow }}</span>
+                  </li>
+                }
+              </ul>
+            </div>
+
+            <div class="contributions-column">
+              <h3 class="column-heading">
+                <span class="heading-prefix">■</span> Key Engineering Contributions
+              </h3>
+              <ul class="contributions-list">
+                @for (item of exp.keyContributions; track item) {
+                  <li>
+                    <span class="arrow-icon">→</span>
+                    <span>{{ item }}</span>
+                  </li>
+                }
+              </ul>
+            </div>
+          </div>
+        </article>
+      }
+    </section>
+
+    <!-- Bottom Navigation Callout -->
+    <div class="bottom-callout card">
+      <div>
+        <h3 class="bottom-callout-title">Interested in technical implementation details?</h3>
+        <p class="bottom-callout-text">
+          Explore personal and business-oriented projects showcasing database-backed architectures.
+        </p>
+      </div>
+      <div class="bottom-callout-actions">
+        <a routerLink="/projects" class="btn btn-primary">
+          View Projects
+        </a>
+        <a routerLink="/contact" class="btn btn-secondary">
+          Get in Touch
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

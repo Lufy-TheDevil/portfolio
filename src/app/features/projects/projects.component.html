@@ -1,0 +1,124 @@
+<div class="page-wrapper">
+  <div class="container projects-page">
+    <!-- Header -->
+    <header class="section-header">
+      <span class="section-label">Software Engineering</span>
+      <h1 class="section-title">Projects</h1>
+      <p class="section-subtitle">
+        Personal and business-oriented applications highlighting database modeling, backend architecture, and role-based workflows.
+      </p>
+    </header>
+
+    <!-- Filter Buttons -->
+    <div class="filter-bar" role="toolbar" aria-label="Filter projects by technology">
+      <span class="filter-label">Filter:</span>
+      <div class="filter-chips">
+        @for (option of filterOptions; track option) {
+          <button
+            type="button"
+            class="filter-chip"
+            [class.active]="selectedFilter() === option"
+            (click)="setFilter(option)"
+          >
+            {{ option }}
+          </button>
+        }
+      </div>
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="projects-list-grid" aria-label="Project card list">
+      @for (project of filteredProjects(); track project.id) {
+        <article class="card card-interactive project-item-card">
+          <!-- Card Top -->
+          <div class="project-header">
+            <div class="title-wrap">
+              <h2 class="project-name">{{ project.title }}</h2>
+              <span class="project-role-type">{{ project.subtitle }}</span>
+            </div>
+          </div>
+
+          <!-- Description -->
+          <p class="project-desc">{{ project.description }}</p>
+
+          <!-- Highlights preview -->
+          @if (project.highlights && project.highlights.length > 0) {
+            <div class="highlights-preview">
+              <span class="preview-title">Key Architectural Features</span>
+              <ul class="mini-bullet-list">
+                @for (bullet of project.highlights.slice(0, 2); track bullet) {
+                  <li>{{ bullet }}</li>
+                }
+              </ul>
+            </div>
+          }
+
+          <!-- Tech Tags -->
+          <div class="project-tags-row">
+            @for (tech of project.technologies; track tech) {
+              <span class="tech-tag">{{ tech }}</span>
+            }
+          </div>
+
+          <!-- Actions -->
+          <div class="project-actions-row">
+            <button
+              type="button"
+              class="btn btn-secondary btn-sm"
+              (click)="openDetails(project)"
+            >
+              View Details
+            </button>
+
+            <div class="external-links">
+              @if (project.githubUrl) {
+                <a
+                  [href]="project.githubUrl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn btn-ghost btn-sm repo-icon-btn"
+                  aria-label="View on GitHub"
+                  title="View repository on GitHub"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="github-icon"
+                  >
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                  </svg>
+                  <span class="repo-btn-text">GitHub</span>
+                </a>
+              }
+              @if (project.demoUrl) {
+                <a
+                  [href]="project.demoUrl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn btn-primary btn-sm"
+                >
+                  Demo
+                </a>
+              }
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</div>
+
+<!-- Project Modal -->
+@if (selectedProject()) {
+  <app-project-modal
+    [project]="selectedProject()!"
+    (close)="closeDetails()"
+  />
+}

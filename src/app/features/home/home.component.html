@@ -1,0 +1,427 @@
+<div class="page-wrapper">
+  <div class="container home-container">
+    <!-- ====================================================================
+         HERO SECTION (Restrained, Technical, Mature)
+         ==================================================================== -->
+    <section class="hero-section" aria-label="Introduction">
+      <div class="status-pill mb-4">
+        <span class="status-dot"></span>
+        <span>{{ dataService.getContactInfo().availability }}</span>
+      </div>
+
+      <div class="hero-header">
+        <h1 class="hero-name">Aklesh Ramola</h1>
+        <p class="hero-role">Software Developer</p>
+      </div>
+
+      <p class="hero-description">
+        {{ dataService.getContactInfo().intro }}
+      </p>
+
+      <div class="hero-tech-line" aria-label="Core technology stack">
+        <code>{{ dataService.techStackSummary.join(' · ') }}</code>
+      </div>
+
+      <div class="hero-actions">
+        <a routerLink="/projects" class="btn btn-primary">
+          View Projects
+        </a>
+        <a routerLink="/contact" class="btn btn-secondary">
+          Contact Me
+        </a>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         ABOUT SECTION (Business Applications & ERP Focus)
+         ==================================================================== -->
+    <section class="about-section" aria-label="About my development background">
+      <div class="section-header">
+        <span class="section-label">Background & Philosophy</span>
+        <h2 class="section-title">Focus on ERP & Business Applications</h2>
+        <p class="section-subtitle">
+          Building stable, transactional backend architectures and role-governed systems.
+        </p>
+      </div>
+
+      <div class="about-content-grid">
+        <div class="about-text-column">
+          <p>
+            My core development experience is centered around <strong>ERP and enterprise business applications</strong>. Rather than building transient web experiences, my day-to-day engineering has involved software that runs day-to-day operations for businesses — managing mission-critical transactional lifecycles from sales leads to warehouse fulfillment.
+          </p>
+          <p>
+            I specialize in database-backed architectures utilizing <strong>ASP.NET, C#, SQL Server, Entity Framework, and ADO.NET</strong> on the backend, complemented by clean, functional client-side development with <strong>JavaScript and modern Angular</strong>.
+          </p>
+          <p>
+            My work prioritizes <strong>data integrity, schema consistency, clear authorization boundaries, and maintainable business logic</strong>.
+          </p>
+        </div>
+
+        <div class="about-highlights-column card">
+          <h3 class="highlights-title">Systems & Functional Areas Touched</h3>
+          <ul class="systems-list">
+            <li>
+              <span class="list-bullet">▪</span>
+              <span><strong>CRM</strong> & Sales Pipeline Tracking</span>
+            </li>
+            <li>
+              <span class="list-bullet">▪</span>
+              <span><strong>ERP</strong> Operational Modules</span>
+            </li>
+            <li>
+              <span class="list-bullet">▪</span>
+              <span><strong>Task Management</strong> & Approval Hierarchies</span>
+            </li>
+            <li>
+              <span class="list-bullet">▪</span>
+              <span><strong>Warehouse Management (WMS)</strong> & Floor Logistics</span>
+            </li>
+            <li>
+              <span class="list-bullet">▪</span>
+              <span><strong>Sales Workflows</strong> (Quote to Order to Invoice)</span>
+            </li>
+            <li>
+              <span class="list-bullet">▪</span>
+              <span><strong>Production Workflows</strong> & Material Inward Tracking</span>
+            </li>
+            <li>
+              <span class="list-bullet">▪</span>
+              <span><strong>Authentication & Authorization</strong> (Session & RBAC)</span>
+            </li>
+            <li>
+              <span class="list-bullet">▪</span>
+              <span><strong>Role-Based Systems</strong> & Controlled State Transitions</span>
+            </li>
+            <li>
+              <span class="list-bullet">▪</span>
+              <span><strong>Database-Driven Applications</strong> (T-SQL & Stored Procedures)</span>
+            </li>
+            <li>
+              <span class="list-bullet">▪</span>
+              <span><strong>Business Process Automation</strong> & Workflow Routing</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SYSTEMS / DOMAIN EXPERIENCE (Interactive Architecture Blueprint)
+         ==================================================================== -->
+    <section class="domain-section" aria-label="Systems and Domain Experience">
+      <div class="section-header-row domain-header-row">
+        <div class="section-header">
+          <span class="section-label">Enterprise Blueprint</span>
+          <h2 class="section-title">Systems & Domain Competency</h2>
+          <p class="section-subtitle">
+            Core business software demands deterministic state transitions, strict transaction isolation, and complete auditability.
+          </p>
+        </div>
+
+        <!-- Navigation Controls for Quick Switching -->
+        <div class="domain-nav-arrows" aria-label="Domain pagination">
+          <button
+            type="button"
+            class="domain-arrow-btn"
+            (click)="prevDomain()"
+            aria-label="Previous domain"
+            title="Previous domain"
+          >
+            ←
+          </button>
+          <span class="domain-counter">{{ selectedDomainIndex }} / {{ domains.length }}</span>
+          <button
+            type="button"
+            class="domain-arrow-btn"
+            (click)="nextDomain()"
+            aria-label="Next domain"
+            title="Next domain"
+          >
+            →
+          </button>
+        </div>
+      </div>
+
+      <div class="domain-explorer">
+        <!-- Scrollable horizontal domain pills with touch snap -->
+        <div class="domain-pills-scrollable" role="tablist" aria-label="Business domains">
+          @for (item of domains; track item.id; let idx = $index) {
+            <button
+              type="button"
+              class="domain-pill"
+              [class.active]="selectedDomain().id === item.id"
+              (click)="selectDomain(item)"
+              role="tab"
+              [attr.aria-selected]="selectedDomain().id === item.id"
+            >
+              <span class="pill-number">0{{ idx + 1 }}</span>
+              <span class="pill-text">{{ item.title }}</span>
+            </button>
+          }
+        </div>
+
+        <!-- Architecture Blueprint Inspection Card -->
+        <div class="domain-detail card blueprint-card" role="tabpanel">
+          <!-- Terminal/Blueprint Top Bar -->
+          <div class="blueprint-topbar">
+            <div class="blueprint-meta">
+              <span class="live-dot"></span>
+              <span class="blueprint-code">SYS.ARCH // {{ selectedDomain().id.toUpperCase() }}</span>
+            </div>
+            <span class="blueprint-tag">ENTERPRISE SPECIFICATION</span>
+          </div>
+
+          <div class="domain-detail-header">
+            <h3 class="domain-detail-title">{{ selectedDomain().title }}</h3>
+            <p class="domain-detail-desc">{{ selectedDomain().shortDescription }}</p>
+          </div>
+
+          <!-- Visual Operational Flow Diagram -->
+          <div class="blueprint-flow" aria-label="Operational pipeline">
+            <div class="flow-step">
+              <span class="flow-step-num">01</span>
+              <div class="flow-step-content">
+                <span class="flow-step-title">Intake & Trigger</span>
+                <span class="flow-step-sub">Input verification</span>
+              </div>
+            </div>
+            <div class="flow-connector">
+              <span class="connector-line"></span>
+              <span class="connector-arrow">▶</span>
+            </div>
+            <div class="flow-step active-flow">
+              <span class="flow-step-num">02</span>
+              <div class="flow-step-content">
+                <span class="flow-step-title">State & RBAC</span>
+                <span class="flow-step-sub">Policy enforcement</span>
+              </div>
+            </div>
+            <div class="flow-connector">
+              <span class="connector-line"></span>
+              <span class="connector-arrow">▶</span>
+            </div>
+            <div class="flow-step">
+              <span class="flow-step-num">03</span>
+              <div class="flow-step-content">
+                <span class="flow-step-title">Commit & Audit</span>
+                <span class="flow-step-sub">ACID persistence</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dual Specification Panes -->
+          <div class="domain-detail-grid">
+            <div class="detail-box">
+              <h4 class="detail-box-title">
+                <span class="box-icon">▪</span> Operational Workflows
+              </h4>
+              <ul class="detail-list">
+                @for (flow of selectedDomain().typicalWorkflows; track flow) {
+                  <li>
+                    <span class="check-mark">✓</span>
+                    <span>{{ flow }}</span>
+                  </li>
+                }
+              </ul>
+            </div>
+
+            <div class="detail-box">
+              <h4 class="detail-box-title">
+                <span class="box-icon">▪</span> Architectural Considerations
+              </h4>
+              <div class="consideration-tags">
+                @for (point of selectedDomain().architecturalConsiderations; track point) {
+                  <div class="consideration-chip">
+                    <span class="chip-bracket">[</span>
+                    <span class="chip-text">{{ point }}</span>
+                    <span class="chip-bracket">]</span>
+                  </div>
+                }
+              </div>
+            </div>
+          </div>
+
+          <!-- Blueprint Terminal Footer -->
+          <div class="blueprint-footer">
+            <span class="footer-prompt">$</span>
+            <span class="footer-msg">Architected for database consistency, transaction safety, and role isolation.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         TECHNICAL SKILLS (Grouped, Minimalist Tags)
+         ==================================================================== -->
+    <section class="skills-section" aria-label="Technical Skills">
+      <div class="section-header">
+        <span class="section-label">Capabilities</span>
+        <h2 class="section-title">Technical Skills</h2>
+        <p class="section-subtitle">
+          Core backend frameworks, relational databases, client technologies, and enterprise architecture patterns.
+        </p>
+      </div>
+
+      <div class="skills-grid">
+        @for (category of dataService.getSkillCategories(); track category.category) {
+          <div class="card skill-card">
+            <div class="skill-card-header">
+              <h3 class="skill-category-title">{{ category.category }}</h3>
+              @if (category.description) {
+                <span class="skill-category-desc">{{ category.description }}</span>
+              }
+            </div>
+
+            <div class="skill-tags">
+              @for (skill of category.skills; track skill) {
+                <span class="tech-tag">{{ skill }}</span>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         WORK EXPERIENCE HIGHLIGHT (BM-CRM, BM-ERP, BM-TASK, BM-WMS)
+         ==================================================================== -->
+    <section class="experience-preview-section" aria-label="Work Experience Highlights">
+      <div class="section-header-row">
+        <div class="section-header">
+          <span class="section-label">Enterprise Experience</span>
+          <h2 class="section-title">ERP-Domain Contributions</h2>
+          <p class="section-subtitle">
+            Engineered workflows and maintained backend data access for core business applications.
+          </p>
+        </div>
+        <a routerLink="/experience" class="btn btn-secondary btn-sm header-action-link">
+          View Full Work Details →
+        </a>
+      </div>
+
+      <div class="experience-cards-grid">
+        @for (exp of dataService.getExperiences(); track exp.id) {
+          <div class="card experience-summary-card">
+            <div class="exp-card-top">
+              <div class="exp-title-row">
+                <span class="system-code">{{ exp.systemName }}</span>
+                <span class="system-badge">{{ exp.systemType }}</span>
+              </div>
+              <p class="exp-company">{{ exp.companyContext }}</p>
+            </div>
+
+            <p class="exp-desc">{{ exp.description }}</p>
+
+            <div class="exp-tech-tags">
+              @for (tech of exp.technologies; track tech) {
+                <span class="tech-tag">{{ tech }}</span>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         FEATURED PROJECTS PREVIEW
+         ==================================================================== -->
+    <section class="projects-preview-section" aria-label="Featured Projects">
+      <div class="section-header-row">
+        <div class="section-header">
+          <span class="section-label">Applications</span>
+          <h2 class="section-title">Projects</h2>
+          <p class="section-subtitle">
+            Database-backed applications built with ASP.NET, Entity Framework, SQL Server, and JavaScript.
+          </p>
+        </div>
+        <a routerLink="/projects" class="btn btn-secondary btn-sm header-action-link">
+          Browse All Projects →
+        </a>
+      </div>
+
+      <div class="projects-grid">
+        @for (project of dataService.getFeaturedProjects(); track project.id) {
+          <div class="card card-interactive project-card">
+            <div class="project-card-header">
+              <div class="project-title-group">
+                <h3 class="project-title">{{ project.title }}</h3>
+                <span class="project-subtitle">{{ project.subtitle }}</span>
+              </div>
+            </div>
+
+            <p class="project-description">{{ project.description }}</p>
+
+            <div class="project-tech-tags">
+              @for (tech of project.technologies; track tech) {
+                <span class="tech-tag">{{ tech }}</span>
+              }
+            </div>
+
+            <div class="project-card-footer">
+              <button
+                type="button"
+                class="btn btn-secondary btn-sm"
+                (click)="openProjectModal(project)"
+              >
+                View Details
+              </button>
+              @if (project.githubUrl) {
+                <a
+                  [href]="project.githubUrl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn btn-ghost btn-sm repo-icon-link"
+                  aria-label="View on GitHub"
+                  title="View repository on GitHub"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                  </svg>
+                  <span>GitHub</span>
+                </a>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         CONTACT CALLOUT
+         ==================================================================== -->
+    <section class="contact-callout-section card" aria-label="Contact callout">
+      <div class="callout-inner">
+        <div>
+          <span class="section-label">Discussion</span>
+          <h2 class="callout-title">Let's connect</h2>
+          <p class="callout-text">
+            Open to discussing software development opportunities, engineering work, ERP/business applications and interesting technical projects.
+          </p>
+        </div>
+        <div class="callout-actions">
+          <a routerLink="/contact" class="btn btn-primary">
+            Contact Me
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- Project Modal -->
+@if (selectedProject()) {
+  <app-project-modal
+    [project]="selectedProject()!"
+    (close)="closeProjectModal()"
+  />
+}

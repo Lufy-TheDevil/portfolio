@@ -1,0 +1,273 @@
+<div class="page-wrapper">
+  <div class="container contact-page">
+    <header class="section-header">
+      <span class="section-label">Communication</span>
+      <h1 class="section-title">Let's connect</h1>
+      <p class="section-subtitle">
+        I'm open to discussing software development opportunities, engineering work, ERP/business applications and interesting technical projects.
+      </p>
+    </header>
+
+    <div class="contact-grid">
+      <!-- Left Column: Direct Channels & Information -->
+      <div class="contact-info-col">
+        <div class="card channel-card">
+          <h2 class="channel-title">Direct Channels</h2>
+          <p class="channel-desc">
+            Feel free to reach out directly via email or connect across professional networks.
+          </p>
+
+          <!-- Email Item with Copy Feature -->
+          <div class="channel-item">
+            <div class="channel-icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+            </div>
+            <div class="channel-details">
+              <span class="channel-label">Email Address</span>
+              <a [href]="'mailto:' + contactInfo.email" class="channel-value">
+                {{ contactInfo.email }}
+              </a>
+            </div>
+            <button
+              type="button"
+              class="btn btn-secondary btn-sm copy-btn"
+              (click)="copyEmail()"
+              [title]="copiedEmail() ? 'Copied!' : 'Copy to clipboard'"
+            >
+              {{ copiedEmail() ? '✓ Copied' : 'Copy Email' }}
+            </button>
+          </div>
+
+          <!-- Professional Profiles List with Icons -->
+          <div class="profiles-group">
+            <span class="channel-label mb-2">Professional Profiles</span>
+            <div class="profiles-list">
+              <!-- GitHub -->
+              <a
+                href="https://github.com/Lufy-TheDevil"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="profile-link-item"
+                title="GitHub (Lufy-TheDevil)"
+              >
+                <div class="profile-left">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="profile-icon"
+                  >
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                  </svg>
+                  <div class="profile-info">
+                    <span class="profile-name">GitHub</span>
+                    <span class="profile-url">github.com/Lufy-TheDevil</span>
+                  </div>
+                </div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="ext-icon"
+                >
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+              </a>
+
+              <!-- LinkedIn -->
+              <a
+                href="https://www.linkedin.com/in/aklesh-ramola-b2308b356"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="profile-link-item"
+                title="LinkedIn (Aklesh Ramola)"
+              >
+                <div class="profile-left">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="profile-icon"
+                  >
+                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                    <rect x="2" y="9" width="4" height="12"></rect>
+                    <circle cx="4" cy="4" r="2"></circle>
+                  </svg>
+                  <div class="profile-info">
+                    <span class="profile-name">LinkedIn</span>
+                    <span class="profile-url">linkedin.com/in/aklesh-ramola-b2308b356</span>
+                  </div>
+                </div>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="ext-icon"
+                >
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                  <polyline points="15 3 21 3 21 9"></polyline>
+                  <line x1="10" y1="14" x2="21" y2="3"></line>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Contact Message Form -->
+      <div class="contact-form-col">
+        <div class="card form-card">
+          <h2 class="channel-title">Send a Message</h2>
+          <p class="channel-desc">
+            Leave a message below. The form includes client-side validation and is ready to link with your backend API.
+          </p>
+
+          @if (isSubmitted()) {
+            <div class="submission-success">
+              <div class="success-icon">✓</div>
+              <h3 class="success-title">Message Simulated & Form Validated</h3>
+              <p class="success-text">
+                Your form submission was successfully processed client-side. The input state has been recorded and the component is prepared for connection to an ASP.NET Web API or mailing webhook.
+              </p>
+              <button
+                type="button"
+                class="btn btn-secondary btn-sm"
+                (click)="resetForm()"
+              >
+                Send Another Message
+              </button>
+            </div>
+          } @else {
+            <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" novalidate>
+              <!-- Name Field -->
+              <div class="form-group">
+                <label for="contact-name" class="form-label">
+                  Your Name <span class="required">*</span>
+                </label>
+                <input
+                  id="contact-name"
+                  type="text"
+                  class="form-control"
+                  [class.is-invalid]="nameControl?.invalid && (nameControl?.dirty || nameControl?.touched)"
+                  formControlName="name"
+                  placeholder="e.g. Jane Doe"
+                  autocomplete="name"
+                />
+                @if (nameControl?.invalid && (nameControl?.dirty || nameControl?.touched)) {
+                  <span class="form-error">Please enter your name (min 2 characters).</span>
+                }
+              </div>
+
+              <!-- Email Field -->
+              <div class="form-group">
+                <label for="contact-email" class="form-label">
+                  Email Address <span class="required">*</span>
+                </label>
+                <input
+                  id="contact-email"
+                  type="email"
+                  class="form-control"
+                  [class.is-invalid]="emailControl?.invalid && (emailControl?.dirty || emailControl?.touched)"
+                  formControlName="email"
+                  placeholder="e.g. jane@company.com"
+                  autocomplete="email"
+                />
+                @if (emailControl?.invalid && (emailControl?.dirty || emailControl?.touched)) {
+                  <span class="form-error">Please enter a valid email address.</span>
+                }
+              </div>
+
+              <!-- Subject Field -->
+              <div class="form-group">
+                <label for="contact-subject" class="form-label">
+                  Subject <span class="required">*</span>
+                </label>
+                <input
+                  id="contact-subject"
+                  type="text"
+                  class="form-control"
+                  [class.is-invalid]="subjectControl?.invalid && (subjectControl?.dirty || subjectControl?.touched)"
+                  formControlName="subject"
+                  placeholder="e.g. Software Engineering Opportunity / ERP Project"
+                />
+                @if (subjectControl?.invalid && (subjectControl?.dirty || subjectControl?.touched)) {
+                  <span class="form-error">Please enter a subject (min 3 characters).</span>
+                }
+              </div>
+
+              <!-- Message Field -->
+              <div class="form-group">
+                <label for="contact-message" class="form-label">
+                  Message <span class="required">*</span>
+                </label>
+                <textarea
+                  id="contact-message"
+                  class="form-control"
+                  [class.is-invalid]="messageControl?.invalid && (messageControl?.dirty || messageControl?.touched)"
+                  formControlName="message"
+                  rows="5"
+                  placeholder="Describe your project, engineering role, or inquiry..."
+                ></textarea>
+                @if (messageControl?.invalid && (messageControl?.dirty || messageControl?.touched)) {
+                  <span class="form-error">Please enter a message (min 10 characters).</span>
+                }
+              </div>
+
+              <!-- Submit Button -->
+              <button
+                type="submit"
+                class="btn btn-primary"
+                [disabled]="isSubmitting()"
+              >
+                @if (isSubmitting()) {
+                  <span>Processing...</span>
+                } @else {
+                  <span>Send Message</span>
+                }
+              </button>
+            </form>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
